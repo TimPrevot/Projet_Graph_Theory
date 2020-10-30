@@ -1,4 +1,7 @@
 from graphes import *
+import sys
+
+# Fonction qui permet de choisir le graphe à étudier
 
 def choose_graph():
     loop = True
@@ -7,6 +10,8 @@ def choose_graph():
         print("Entrez le numéro du graphe que vous voulez traiter")
         choix  = input("> ")
         print("Chargement du fichier '" + str(choix) + ".txt'.")
+
+# Fonction qui lit les informations du graphe en .txt et les retourne
 
 def read_graph(fileName = str):
     with open (fileName) as f:
@@ -33,11 +38,14 @@ def read_graph(fileName = str):
 
     transitions = []
     for i in range(2, len(content)):
-        transitions.append((int(content[i][0]), int(content[i][1]), int(content[i][2])))
+        print(content[i])
+        transitions.append(content[i])
         
     return content, transitions
 
-def load_graph(fileName = "graph_test.txt"):
+# Fonction qui crée l'objet Graphe que l'on va pouvoir manipuler ensuite
+
+def load_graph(fileName = str):
     try:
         content, transitions = read_graph(fileName)
     except Exception as e:
@@ -46,4 +54,9 @@ def load_graph(fileName = "graph_test.txt"):
         return None
 
     graphe = Graphe()
+    graphe.set_nbSommets(content[0])
+    graphe.set_nbArcs(content[1])
+    graphe.add_arcs(transitions)
+
+    return graphe
     
