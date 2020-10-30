@@ -59,4 +59,3 @@ def load_graph(fileName = str):
     graphe.add_arcs(transitions)
 
     return graphe
-    
