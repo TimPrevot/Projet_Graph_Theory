@@ -1,20 +1,25 @@
-from graphes import *
+from graphe import *
 from fonctions import *
 
-
 if __name__ == "__main__":
-    graphe = load_graph("graph_test.txt")
-    graphe.afficher()
-    print()
-    graphe.create_matrix_adja()
-    graphe.create_matrix_val()
-    print()
-    print()
-    graphe.find_start_end()
-    graphe.find_values()
-    print()
-    graphe.fill_matrix_adja()
-    graphe.fill_matrix_val()
-    graphe.afficher()
-
-    
+    loop = True
+    while loop:
+        file = choose_graph()
+        graphe = Graphe()
+        graphe.define_graph(file)
+        graphe.get_arcs(file)
+        graphe.afficher()
+        print()
+        graphe.init_dist()
+        print()
+        print("Floyd-Warshall :")
+        graphe.floyd_warshall()
+        print()
+        print("Détection des circuits absorbants :")
+        print()
+        graphe.detectionCircuitAbsorbant()
+        print("Voulez-vous choisir un autre graphe ? Tapez Oui ou Non")
+        yesNo = input()
+        yesNo = yesNo.upper()
+        if yesNo == "NON":
+            loop = False
